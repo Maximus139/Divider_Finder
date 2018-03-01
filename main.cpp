@@ -2,40 +2,30 @@
 #include <cmath>
 using namespace std;
 
+void Find_Dividers(int input_number, register int i, int k)
+{
+    int sqrtN = sqrt(input_number);
+    if (sqrtN * sqrtN == input_number)
+    {
+        cout << sqrtN << " ";
+        sqrtN--;
+    }
+        for (; i <= sqrtN; i += k)
+            if (!(input_number % i))
+               cout << i << " " << input_number / i << " ";
+}
 int main()
 {
-    cout << "Write your number" << endl;
     int input_number;
-    register int i;
+
+    cout << "Write your number" << endl;
     cin >> input_number;
-    int sqrtN = sqrt(input_number);
+
     if (!input_number)
         return 0;
-    else if (!(input_number % 2))
-    {
-        cout << "1 " << input_number << " ";
-        for (i = 2; i <= sqrtN; i += 2)
-        {
-            if (!(input_number % i))
-            {
-               cout << i << " ";
-               if (i * i != input_number)
-                  cout << input_number / i << " ";
-            }
-        }
-    }
+    else if ((input_number % 2))
+        Find_Dividers(input_number, 1, 2);
     else
-    {
-        cout << "1 " << input_number << " ";
-        for (i = 3; i <= sqrtN; i += 2)
-        {
-            if (!(input_number % i))
-            {
-               cout << i << " ";
-               if (i * i != input_number)
-                  cout << input_number / i << " ";
-            }
-        }
-    }
+        Find_Dividers(input_number, 1, 1);
     return 0;
 }
